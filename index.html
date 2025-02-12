@@ -47,6 +47,33 @@
                 <button onclick="addExpense()">Add Expense</button>
             </div>
         </div>
+        <div class="table-container">
+            <h2>Transaction History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Amount (₦)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-history">
+                    <!-- Transactions will appear here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="summary">
+            <h2>Budget Summary</h2>
+            <p>Total Income: ₦<span id="total-income">0</span></p>
+            <p>Total Expenses: ₦<span id="total-expenses">0</span></p>
+            <p>Balance: ₦<span id="balance">0</span></p>
+        </div>
+        <div class="clear-button-group">
+            <button onclick="clearAll()">Clear All</button>
+        </div>
+        <div id="notification" class="hidden"></div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
