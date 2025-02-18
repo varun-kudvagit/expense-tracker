@@ -7,6 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-direction: row; /* Landscape mode */
 }
 
 .container {
@@ -14,8 +15,8 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    width: 100%;
+    max-width: 800px; /* Increased width for landscape mode */
+    width: 90%;
     overflow: auto; 
 }
 
@@ -47,11 +48,12 @@ h2 {
     padding: 10px;
     border: 1px solid green;
     border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding is included in width */
+    box-sizing: border-box;
 }
 
 .button-group {
     text-align: center;
+    margin-top: 10px;
 }
 
 .button-group button {
@@ -67,27 +69,11 @@ h2 {
     background-color: #218838;
 }
 
-.table-container {
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid darkcyan;
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
-}
-
-.summary {
-    margin-top: 20px;
-    text-align: center;
+canvas {
+    display: block;
+    margin: 20px auto;
+    width: 50%;
+    max-width: 300px; /* Medium-sized pie chart */
 }
 
 .clear-button-group {
@@ -101,8 +87,4 @@ th, td {
 
 .clear-button-group button:hover {
     background-color: #c82333;
-}
-
-.hidden {
-    display: none;
 }
