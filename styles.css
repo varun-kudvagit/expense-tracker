@@ -17,7 +17,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 1000px;
+    max-width: 900px;  /* Slightly reduced max width for better layout */
     height: auto;
     overflow-y: auto;
 }
@@ -37,8 +37,10 @@ h2 {
     text-decoration: underline;
 }
 
+/* Fixing input width */
 .input-group {
     margin-bottom: 15px;
+    text-align: center; /* Center-align labels */
 }
 
 .input-group label {
@@ -47,33 +49,43 @@ h2 {
     font-size: 18px;
 }
 
-.input-group input {
-    width: 100%;
+.input-group input,
+.input-group select {
+    width: 95%;  /* Prevents full stretch */
+    max-width: 350px;  /* Limits input field width */
     padding: 10px;
     font-size: 16px;
     border: 1px solid green;
     border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto; /* Centers input */
 }
 
+/* Buttons Styling */
 button {
-    padding: 10px 15px;
+    padding: 12px 18px;
     font-size: 16px;
+    font-weight: bold;
     background-color: #28a745;
-    color: wheat;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     display: block;
     margin: 10px auto;
+    width: 200px;  /* Consistent button width */
 }
 
 button:hover {
     background-color: #218838;
 }
 
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 10px;
 }
 
 th, td {
@@ -82,6 +94,17 @@ th, td {
     border: 1px solid darkcyan;
 }
 
+th {
+    background-color: #d2f3f3;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+td {
+    font-size: 16px;
+}
+
+/* Pie Chart Styling */
 canvas {
     display: block;
     margin: 20px auto;
@@ -89,8 +112,19 @@ canvas {
     max-width: 300px;
 }
 
+/* Responsive Adjustments */
 @media screen and (max-width: 768px) {
     body {
         flex-direction: column;
+    }
+
+    .container {
+        width: 95%;
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    button {
+        width: 100%;  /* Full-width buttons for better mobile usability */
     }
 }
