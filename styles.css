@@ -6,8 +6,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    flex-direction: row; /* Landscape mode */
+    min-height: 100vh; /* Ensures visibility */
+    overflow: auto; /* Allows scrolling */
 }
 
 .container {
@@ -15,9 +15,10 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Increased width for landscape mode */
     width: 90%;
-    overflow: auto; 
+    max-width: 900px; /* Increased width */
+    overflow-y: auto; /* Scroll if content exceeds */
+    max-height: 95vh; /* Prevents elements from being cut off */
 }
 
 h1, h2 {
@@ -56,35 +57,9 @@ h2 {
     margin-top: 10px;
 }
 
-.button-group button {
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: wheat;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.button-group button:hover {
-    background-color: #218838;
-}
-
 canvas {
     display: block;
     margin: 20px auto;
     width: 50%;
-    max-width: 300px; /* Medium-sized pie chart */
-}
-
-.clear-button-group {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.clear-button-group button {
-    background-color: #dc3545;
-}
-
-.clear-button-group button:hover {
-    background-color: #c82333;
+    max-width: 300px;
 }
