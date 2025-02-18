@@ -1,40 +1,18 @@
-const incomeDescriptionInput = document.getElementById('income-description');
-const incomeAmountInput = document.getElementById('amount-input');
-const expenseDescriptionInput = document.getElementById('expense-description');
-const expenseCategoryInput = document.getElementById('expense-category');
-const expenseAmountInput = document.getElementById('expense-amount');
-const transactionHistory = document.getElementById('transaction-history');
-const totalIncome = document.getElementById('total-income');
-const totalExpenses = document.getElementById('total-expenses');
-const balance = document.getElementById('balance');
-
-function addIncome() {
-    const description = incomeDescriptionInput.value.trim();
-    const amount = parseFloat(incomeAmountInput.value.trim());
-
-    if (description === '' || isNaN(amount) || amount <= 0) {
-        alert('Please enter a valid income description and amount.');
-        return;
+const ctx = document.getElementById('expenseChart').getContext('2d');
+let expenseChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Income', 'Expenses'],
+        datasets: [{
+            data: [0, 0],
+            backgroundColor: ['#28a745', '#dc3545']
+        }]
     }
+});
 
-    addTransaction(description, amount, 'Income');
-    incomeDescriptionInput.value = '';
-    incomeAmountInput.value = '';
-}
-
-function addExpense() {
-    const description = expenseDescriptionInput.value.trim();
-    const category = expenseCategoryInput.value;
-    const amount = parseFloat(expenseAmountInput.value.trim());
-
-    if (description === '' || isNaN(amount) || amount <= 0) {
-        alert('Please enter a valid expense description and amount.');
-        return;
-    }
-
-    addTransaction(description, amount, category);
-    expenseDescriptionInput.value = '';
-    expenseAmountInput.value = '';
+function updatePieChart(income, expenses) {
+    expenseChart.data.datasets[0].data = [income, expenses];
+    expenseChart.update();
 }
 
 function addTransaction(description, amount, category) {
@@ -44,7 +22,7 @@ function addTransaction(description, amount, category) {
         <td>${category}</td>
         <td>${amount.toFixed(2)}</td>
         <td><button class="delete-btn"><i class="fas fa-trash"></i></button></td>`;
-    transactionHistory.appendChild(transactionRow);
+    document.getElementById('transaction-history').appendChild(transactionRow);
 
     transactionRow.querySelector('.delete-btn').addEventListener('click', function() {
         transactionRow.remove();
@@ -58,9 +36,9 @@ function updateSummary() {
     let totalIncomeValue = 0;
     let totalExpensesValue = 0;
 
-    const transactions = transactionHistory.querySelectorAll('tr');
+    const transactions = document.getElementById('transaction-history').querySelectorAll('tr');
 
-    transactions.forEach(function(transaction) {
+    transactions.forEach(transaction => {
         const amount = parseFloat(transaction.children[2].textContent);
         const category = transaction.children[1].textContent;
 
@@ -71,15 +49,13 @@ function updateSummary() {
         }
     });
 
-    totalIncome.textContent = totalIncomeValue.toFixed(2);
-    totalExpenses.textContent = totalExpensesValue.toFixed(2);
-    const currentBalance = totalIncomeValue - totalExpensesValue;
-    balance.textContent = currentBalance.toFixed(2);
+    document.getElementById('total-income').textContent = totalIncomeValue.toFixed(2);
+    document.getElementById('total-expenses').textContent = totalExpensesValue.toFixed(2);
+    document.getElementById('balance').textContent = (totalIncomeValue - totalExpensesValue).toFixed(2);
+
+    updatePieChart(totalIncomeValue, totalExpensesValue);
 }
 
-function clearAll() {
-    transactionHistory.innerHTML = '';
-    totalIncome.textContent = '0';
-    totalExpenses.textContent = '0';
-    balance.textContent = '0';
+function printReport() {
+    window.print();
 }
