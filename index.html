@@ -11,6 +11,7 @@
 <body>
     <div class="container">
         <h1>Expense Tracker</h1>
+        
         <div class="section">
             <h2>Income</h2>
             <div class="input-group">
@@ -22,9 +23,10 @@
                 <input type="number" id="amount-input" min="0" step="0.01" required>
             </div>
             <div class="button-group">
-                <button onclick="addIncome()">Add Income</button>
+                <button id="add-income-btn">Add Income</button>
             </div>
         </div>
+
         <div class="section">
             <h2>Expenses</h2>
             <div class="input-group">
@@ -46,9 +48,10 @@
                 <input type="number" id="expense-amount" placeholder="e.g. 50000">
             </div>
             <div class="button-group">
-                <button onclick="addExpense()">Add Expense</button>
+                <button id="add-expense-btn">Add Expense</button>
             </div>
         </div>
+
         <div class="table-container">
             <h2>Transaction History</h2>
             <table>
@@ -63,18 +66,21 @@
                 <tbody id="transaction-history"></tbody>
             </table>
         </div>
+
         <div class="summary">
             <h2>Budget Summary</h2>
             <p>Total Income: Rs. <span id="total-income">0</span></p>
             <p>Total Expenses: Rs. <span id="total-expenses">0</span></p>
             <p>Balance: Rs. <span id="balance">0</span></p>
         </div>
+
         <canvas id="expenseChart"></canvas>
+
         <div class="button-group">
-            <button onclick="printReport()">Print Report</button>
+            <button id="print-btn">Print Report</button>
         </div>
         <div class="clear-button-group">
-            <button onclick="clearAll()">Clear All</button>
+            <button id="clear-btn">Clear All</button>
         </div>
     </div>
     <script src="script.js"></script>
