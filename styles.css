@@ -51,7 +51,7 @@ h2 {
 
 .input-group input,
 .input-group select {
-    width: 95%;  /* Prevents full stretch */
+    width: 80%;  /* Prevents full stretch */
     max-width: 350px;  /* Limits input field width */
     padding: 10px;
     font-size: 16px;
