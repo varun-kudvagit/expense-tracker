@@ -95,9 +95,11 @@ function clearExpenseInputs() {
     expenseAmount.value = '';
     expenseCategory.value = 'Housing';
 }
-
-// Function to clear all transactions
 function clearAll() {
-    transactionHistory.innerHTML = '';
-    updateSummary();
+    transactionHistory.innerHTML = ""; // Remove all transactions
+    totalIncome.textContent = "0";
+    totalExpense.textContent = "0";
+    balance.textContent = "0";
+
+    updateChart(0, 0); // Reset Pie Chart
 }
