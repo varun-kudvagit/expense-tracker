@@ -1,37 +1,28 @@
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #ADD8E6; /* Light Blue */
+    background-color: #72A0C1;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Fixes mobile issue */
+    align-items: center;
     min-height: 100vh;
-    overflow-y: auto; /* Ensures content is scrollable */
 }
 
-/* Container */
 .container {
-    background-color: white;
+    background-color: #D9DFC6;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     max-width: 800px;
     width: 100%;
 }
 
-/* Headings */
 h1, h2 {
     color: #333;
     text-align: center;
 }
 
-h1 {
-    margin-bottom: 20px;
-}
-
-/* Input Groups */
 .input-group {
     margin-bottom: 15px;
 }
@@ -44,82 +35,62 @@ h1 {
 
 .input-group input,
 .input-group select {
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #555;
     border-radius: 5px;
     font-size: 16px;
+    color: #555;
 }
 
-/* Buttons */
 .button-group button {
-    background-color: #6495ED; /* Cornflower Blue */
-    color: white;
-    border: none;
-    padding: 12px;
+    background-color: #6495ED;
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100%; /* Full-width for mobile */
-    margin-bottom: 10px;
+    margin: 5px;
 }
 
 .button-group button:hover {
-    background-color: #4169E1; /* Darker Cornflower Blue */
-}
-
-/* Table */
-.table-container {
-    overflow-x: auto; /* Prevents table overflow */
+    background-color: #4169E1;
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
-    min-width: 600px; /* Ensures table stays readable */
 }
 
 th, td {
     text-align: left;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    border: 1px solid black;
+    border-radius: 5%;
+    background-color:#D9DFC6;
 }
 
 th {
     background-color: #6495ED;
-    color: white;
+    color: black;
 }
 
-/* Chart */
 .chart-container {
     text-align: center;
     margin-top: 20px;
-    width: 100%;
 }
 
 canvas {
-    width: 100% !important;
-    max-width: 350px; /* Adjust for smaller screens */
+    width: 100%;
+    max-width: 400px;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 768px) {
+@media (max-width: 600px) {
     .container {
-        max-width: 100%;
+        width: 90%;
         padding: 15px;
     }
-    
-    .input-group input,
-    .input-group select {
-        font-size: 14px;
-        padding: 8px;
-    }
-    
     .button-group button {
-        width: 100%; /* Make buttons full-width */
-        padding: 12px;
-    }
-    
-    .table-container {
-        overflow-x: auto;
+        width: 100%;
+        margin: 5px 0;
     }
 }
