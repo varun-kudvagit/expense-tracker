@@ -1,137 +1,123 @@
-/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #4d2d1a; /* Dark Brown */
-    color: white;
-    text-align: center;
+    background-color: #b38866;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
-    max-width: 800px;
-    margin: auto;
+    background-color: #d9b99e;
     padding: 20px;
-    background-color: #5a3722; /* Slightly lighter brown */
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Title Styling */
-h1 {
-    font-size: 26px;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* Section Styling (Income & Expenses) */
-.section {
-    background-color: #693e25;
-    padding: 15px;
-    margin: 15px 0;
-    border-radius: 8px;
-}
-
-h2 {
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
-/* Input & Select Fields */
-input, select {
-    width: 80%;
-    padding: 8px;
-    margin: 10px 0;
-    font-size: 16px;
-    border: 1px solid white;
-    border-radius: 5px;
-}
-
-/* Buttons */
-button {
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.income-btn {
-    background-color: green;
-    color: white;
-}
-
-.expense-btn {
-    background-color: red;
-    color: white;
-}
-
-.clear-btn {
-    background-color: orange;
-    color: white;
-}
-
-.print-btn {
-    background-color: blue;
-    color: white;
-}
-
-/* Button Hover Effects */
-button:hover {
-    opacity: 0.8;
-}
-
-/* Transaction Table */
-table {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
     width: 100%;
-    margin: 20px auto;
-    border-collapse: collapse;
 }
 
-th, td {
-    border: 1px solid white;
-    padding: 10px;
+h1, h2 {
+    color:black ;
     text-align: center;
 }
 
-th {
-    background-color: #854e2d;
-    font-weight: bold;
+h1 {
+    margin-bottom: 20px;
 }
 
-/* Buttons Container */
-.buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-top: 15px;
+h2 {
+    margin-bottom: 15px;
 }
 
-/* Pie Chart */
-canvas {
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
     display: block;
-    margin: 20px auto;
-    background-color: white;
-    border-radius: 10px;
+    margin-bottom: 5px;
+    color: #555;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
+.input-group input,
+.input-group select {
+    width: calc(100% - 10px);
+    padding: 10px;
+    border: 1px solid #aba9a9;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
 
-    input, select {
-        width: 100%;
-    }
+.button-group button,
+.clear-button-group button {
+    background-color: #d9a25f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-    button {
-        width: 100%;
-    }
+.button-group button:hover,
+.clear-button-group button:hover {
+    background-color: #9c6f2d;
+}
 
-    .buttons {
-        flex-direction: column;
-    }
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #FF69B4;
+    color: white;
+}
+
+td {
+    color: #333;
+}
+
+td button {
+    background-color: #FF1493;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+td button:hover {
+    background-color: #C71585;
+}
+
+.summary {
+    background-color: #e3aa7b;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.summary p {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.summary span {
+    font-weight: bold;
 }
