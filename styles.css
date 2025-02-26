@@ -1,33 +1,137 @@
-/* General Styles */
+/* General Page Styling */
 body {
-    font-family: Arial, serif;
-    background-color: #4d2c1d;
+    font-family: Arial, sans-serif;
+    background-color: #4d2d1a; /* Dark Brown */
     color: white;
     text-align: center;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
 
-/* Container */
 .container {
-    width: 50%;
+    max-width: 800px;
     margin: auto;
-    background-color: #5a3626;
     padding: 20px;
+    background-color: #5a3722; /* Slightly lighter brown */
     border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Title Styling */
+h1 {
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Section Styling (Income & Expenses) */
+.section {
+    background-color: #693e25;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* Input & Select Fields */
+input, select {
+    width: 80%;
+    padding: 8px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+
+/* Buttons */
+button {
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.income-btn {
+    background-color: green;
+    color: white;
+}
+
+.expense-btn {
+    background-color: red;
+    color: white;
+}
+
+.clear-btn {
+    background-color: orange;
+    color: white;
+}
+
+.print-btn {
+    background-color: blue;
+    color: white;
+}
+
+/* Button Hover Effects */
+button:hover {
+    opacity: 0.8;
+}
+
+/* Transaction Table */
+table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #854e2d;
+    font-weight: bold;
+}
+
+/* Buttons Container */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 /* Pie Chart */
 canvas {
-    width: 350px !important;
-    height: 350px !important;
     display: block;
-    margin: auto;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 10px;
 }
 
-/* Buttons */
-.buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    input, select {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
 }
