@@ -11,62 +11,43 @@
     <div class="container">
         <h1>Expense Tracker</h1>
 
-        <div class="section">
-            <h2 class="underline">Income</h2>
-            <div class="input-group">
-                <label for="income-description">Description</label>
-                <input type="text" id="income-description" placeholder="e.g., Salary">
-            </div>
-            <div class="input-group">
-                <label for="income-amount">Amount (Rs.)</label>
-                <input type="number" id="income-amount" placeholder="e.g., 50000">
-            </div>
-            <button id="add-income-btn">Add Income</button>
+        <h2 class="underline">Income</h2>
+        <div class="input-group">
+            <label for="income-description">Description</label>
+            <input type="text" id="income-description" placeholder="e.g., Salary">
         </div>
+        <div class="input-group">
+            <label for="income-amount">Amount (Rs.)</label>
+            <input type="number" id="income-amount" placeholder="e.g., 50000">
+        </div>
+        <button id="add-income-btn">Add Income</button>
 
-        <div class="section">
-            <h2 class="underline">Expenses</h2>
-            <div class="input-group">
-                <label for="expense-description">Description</label>
-                <input type="text" id="expense-description" placeholder="e.g., Rent">
-            </div>
-            <div class="input-group">
-                <label for="expense-amount">Amount (Rs.)</label>
-                <input type="number" id="expense-amount" placeholder="e.g., 15000">
-            </div>
-            <button id="add-expense-btn">Add Expense</button>
+        <h2 class="underline">Expenses</h2>
+        <div class="input-group">
+            <label for="expense-description">Description</label>
+            <input type="text" id="expense-description" placeholder="e.g., Rent">
         </div>
+        <div class="input-group">
+            <label for="expense-amount">Amount (Rs.)</label>
+            <input type="number" id="expense-amount" placeholder="e.g., 15000">
+        </div>
+        <button id="add-expense-btn">Add Expense</button>
 
-        <div class="section">
-            <h2 class="underline">Transaction History</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Amount (Rs.)</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="transaction-history"></tbody>
-            </table>
-        </div>
-
-        <div class="summary">
-            <h2 class="underline">Budget Summary</h2>
-            <p>Total Income: Rs. <span id="total-income">0</span></p>
-            <p>Total Expenses: Rs. <span id="total-expenses">0</span></p>
-            <p>Balance: Rs. <span id="balance">0</span></p>
-        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Amount (Rs.)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-history"></tbody>
+        </table>
 
         <canvas id="expenseChart"></canvas>
-
-        <div class="button-group">
-            <button id="print-btn">Print Report</button>
-        </div>
-        <div class="clear-button-group">
-            <button id="clear-btn">Clear All</button>
-        </div>
+        <button id="print-btn">Print Report</button>
+        <button id="clear-btn">Clear All</button>
     </div>
     <script src="script.js"></script>
 </body>
