@@ -1,76 +1,123 @@
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5dc; /* Beige */
-    color: #333;
-    transition: background 0.3s, color 0.3s;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-h1 {
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+h1, h2 {
+    color: #333;
     text-align: center;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    background: #6495ED; /* Corn Silk Blue */
-    padding: 1rem;
+h1 {
+    margin-bottom: 20px;
 }
 
-.navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+h2 {
+    margin-bottom: 15px;
 }
 
-.navbar a {
-    text-decoration: none;
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.input-group input,
+.input-group select {
+    width: calc(100% - 10px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.button-group button,
+.clear-button-group button {
+    background-color: #FF69B4;
     color: white;
-    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-group button:hover,
+.clear-button-group button:hover {
+    background-color: #FF1493;
+}
+
+.table-container {
+    margin-top: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
     text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
-/* Buttons */
-button {
-    padding: 10px;
-    cursor: pointer;
-    background: #4682B4; /* Light Blue */
+th {
+    background-color: #FF69B4;
+    color: white;
+}
+
+td {
+    color: #333;
+}
+
+td button {
+    background-color: #FF1493;
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
-button:hover {
-    background: #4169E1;
+td button:hover {
+    background-color: #C71585;
 }
 
-/* Sections */
-section {
-    padding: 50px 10%;
+.summary {
+    background-color: #FFB3FF;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    color: #333;
 }
 
-/* Dark Mode */
-.dark-mode {
-    background-color: #121212;
-    color: white;
+.summary p {
+    margin: 10px 0;
+    font-size: 18px;
 }
 
-.dark-mode .navbar {
-    background: #333;
-}
-
-.dark-mode table {
-    background: #222;
-    color: white;
+.summary span {
+    font-weight: bold;
 }
