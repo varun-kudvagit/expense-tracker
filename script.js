@@ -8,6 +8,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 data: [0, 0],
                 backgroundColor: ['#28a745', '#dc3545']
             }]
+        },
+        options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'right', // Aligning the legend
+                    labels: {
+                        font: {
+                            size: 14
+                        },
+                        padding: 15
+                    }
+                }
+            }
         }
     });
 
@@ -17,6 +31,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function addTransaction(type, description, amount) {
+        if (!amount || amount <= 0) {
+            alert("Please enter a valid amount.");
+            return;
+        }
+
         const transactionRow = document.createElement('tr');
         transactionRow.innerHTML = `
             <td>${type}</td>
