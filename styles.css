@@ -1,119 +1,88 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #c4b7a6;
+    background-color: #2E1A12;
+    color: white;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-    overflow-y: auto;
+    text-align: center;
 }
 
 .container {
-    background-color: #d9cbae;
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
     padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 85%;
-    max-width: 900px;
-    height: auto;
-    overflow-y: auto;
+    background: #442C22;
+    border-radius: 10px;
 }
 
 h1, h2 {
-    text-align: center;
-    font-size: 25px;
+    text-decoration: underline;
 }
 
-/* Input Fields */
-.input-group {
-    margin-bottom: 15px;
-    text-align: center;
+/* Forms */
+.form-section {
+    background: #55362B;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
 }
 
-.input-group label {
+label, select, input, button {
     display: block;
-    margin-bottom: 5px;
-    font-size: 18px;
+    width: 100%;
+    margin: 5px 0;
 }
 
-.input-group input,
-.input-group select {
-    width: 85%;
-    max-width: 350px;
+input, select {
     padding: 10px;
-    font-size: 16px;
-    border: 1px solid black;
-    background-color: beige;
     border-radius: 5px;
-    box-sizing: border-box;
-    display: block;
-    margin: 0 auto;
+    border: none;
 }
 
-/* Buttons */
 button {
-    padding: 12px 18px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
     font-size: 16px;
     font-weight: bold;
+}
+
+.add-btn {
     color: white;
-    border: none;
     border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    margin: 10px auto;
-    width: 200px;
 }
 
-.green-btn { background-color: green; }
-.red-btn { background-color: red; }
-.maple-btn { background-color: #b5651d; }
-
-.green-btn:hover { background-color: #218838; }
-.red-btn:hover { background-color: darkred; }
-.maple-btn:hover { background-color: #a0522d; }
-
-/* Beige buttons for mobile */
-@media screen and (max-width: 768px) {
-    .maple-btn {
-        background-color: beige;
-        color: black;
-        border: 1px solid black;
-    }
+.income-btn {
+    background-color: green;
 }
 
-/* Table */
+.expense-btn {
+    background-color: red;
+}
+
+/* Transaction Table */
 table {
     width: 100%;
+    background: #664136;
     border-collapse: collapse;
-    margin-top: 10px;
 }
 
 th, td {
     padding: 10px;
-    text-align: center;
-    border: 1px solid darkcyan;
+    border: 1px solid white;
 }
 
-th {
-    background-color: #d2f3f3;
-    font-size: 18px;
-    font-weight: bold;
+/* Summary */
+.summary {
+    text-align: left;
+    padding: 10px;
 }
 
 /* Pie Chart */
 canvas {
+    max-width: 250px;
+    margin: auto;
     display: block;
-    margin: 20px auto;
-    width: 50%;
-    max-width: 300px;
-}
-
-/* Make Pie Chart Legend Readable */
-@media screen and (max-width: 768px) {
-    .chart-legend {
-        font-size: 14px !important;  /* Ensures legend text is visible */
-    }
 }
