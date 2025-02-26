@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Your Financial Buddy</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -14,25 +15,26 @@
                 <h2>Income</h2>
                 <div class="input-group">
                     <label for="income-description">Description</label>
-                    <input type="text" id="income-description" placeholder="e.g. Salary" aria-required="true">
+                    <input type="text" id="income-description" placeholder="e.g. Salary">
                 </div>
                 <div class="input-group">
                     <label for="income-amount">Amount (Rs.)</label>
-                    <input type="number" id="income-amount" placeholder="e.g. 100000" aria-required="true">
+                    <input type="number" id="income-amount" placeholder="e.g. 100000">
                 </div>
                 <div class="button-group">
                     <button onclick="addIncome()">Add Income</button>
                 </div>
             </section>
+
             <section class="section">
                 <h2>Expenses</h2>
                 <div class="input-group">
                     <label for="expense-description">Description</label>
-                    <input type="text" id="expense-description" placeholder="e.g. Rent" aria-required="true">
+                    <input type="text" id="expense-description" placeholder="e.g. Rent">
                 </div>
                 <div class="input-group">
                     <label for="expense-category">Category</label>
-                    <select id="expense-category" aria-required="true">
+                    <select id="expense-category">
                         <option value="Housing">Housing</option>
                         <option value="Food">Food</option>
                         <option value="Transportation">Transportation</option>
@@ -42,12 +44,13 @@
                 </div>
                 <div class="input-group">
                     <label for="expense-amount">Amount (Rs.)</label>
-                    <input type="number" id="expense-amount" placeholder="e.g. 50000" aria-required="true">
+                    <input type="number" id="expense-amount" placeholder="e.g. 5000">
                 </div>
                 <div class="button-group">
                     <button onclick="addExpense()">Add Expense</button>
                 </div>
             </section>
+
             <section class="table-container">
                 <h2>Transaction History</h2>
                 <table>
@@ -60,19 +63,25 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="transaction-history">
-                        <!-- Transactions will appear here -->
-                    </tbody>
+                    <tbody id="transaction-history"></tbody>
                 </table>
             </section>
+
             <section class="summary">
                 <h2>Budget Summary</h2>
                 <p>Total Income: Rs.<span id="total-income">0</span></p>
                 <p>Total Expenses: Rs.<span id="total-expenses">0</span></p>
                 <p>Balance: Rs.<span id="balance">0</span></p>
             </section>
-            <div class="clear-button-group">
+
+            <section class="chart-container">
+                <h2>Expense Analysis</h2>
+                <canvas id="expenseChart"></canvas>
+            </section>
+
+            <div class="button-group">
                 <button onclick="clearAll()">Clear All</button>
+                <button onclick="printReport()">Print Report</button>
             </div>
         </main>
     </div>
