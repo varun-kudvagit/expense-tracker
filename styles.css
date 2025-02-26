@@ -55,6 +55,11 @@ button:hover {
     background: #4169E1;
 }
 
+/* Sections */
+section {
+    padding: 50px 10%;
+}
+
 /* Dark Mode */
 .dark-mode {
     background-color: #121212;
