@@ -36,10 +36,12 @@ h2 {
 .underline {
     text-decoration: underline;
 }
+
 .input-group {
     margin-bottom: 15px;
     text-align: center; 
 }
+
 .input-group label {
     display: block;
     margin-bottom: 5px;
@@ -52,31 +54,47 @@ h2 {
     max-width: 350px;  
     padding: 10px;
     font-size: 16px;
-    border: 1px solid green;
+    background-color: beige; 
+    border: 1px solid black;
     border-radius: 5px;
     box-sizing: border-box;
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
 }
+
+#add-income-btn {
+    background-color: green;
+}
+
+#add-expense-btn {
+    background-color: red;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+}
+
+#print-btn, #clear-btn {
+    background-color: #AC5C3E; 
+    color: white;
+}
+
 button {
     padding: 12px 18px;
     font-size: 16px;
     font-weight: bold;
-    background-color: #28a745;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     display: block;
     margin: 10px auto;
-    width: 200px;  
+    width: 200px;
 }
 
 button:hover {
-    background-color: #218838;
+    opacity: 0.85;
 }
-
-/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -98,21 +116,13 @@ th {
 td {
     font-size: 16px;
 }
-
-/* Pie Chart Styling */
 canvas {
     display: block;
     margin: 20px auto;
     width: 50%;
     max-width: 300px;
 }
-
-/* Responsive Adjustments */
 @media screen and (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
     .container {
         width: 95%;
         max-width: 100%;
@@ -120,6 +130,6 @@ canvas {
     }
 
     button {
-        width: 100%;  /* Full-width buttons for better mobile usability */
+        width: 100%; 
     }
 }
