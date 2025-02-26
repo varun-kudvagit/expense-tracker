@@ -4,79 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
     <div class="container">
-        <h1>Expense Tracker</h1>
+        <h1 class="title">Expense Tracker</h1>
 
-        <div class="section">
+        <!-- Income Section -->
+        <div class="form-section">
             <h2>Income</h2>
-            <div class="input-group">
-                <label for="income-description">Description</label>
-                <select id="income-description">
-                    <option value="Professional Income">Professional Income</option>
-                    <option value="Salary">Salary</option>
-                    <option value="Business Income">Business Income</option>
-                    <option value="Agricultural Income">Agricultural Income</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="income-amount">Amount (Rs.)</label>
-                <input type="number" id="income-amount" placeholder="e.g., 50000">
-            </div>
-            <button id="add-income-btn" class="green-btn">Add Income</button>
+            <label for="income-desc">Description</label>
+            <select id="income-desc">
+                <option value="Salary">Professional Income</option>
+                <option value="Freelance">Freelance</option>
+            </select>
+            <label for="income-amount">Amount (Rs.)</label>
+            <input type="number" id="income-amount" placeholder="e.g., 50000">
+            <button class="add-btn income-btn" onclick="addTransaction('income')">Add Income</button>
         </div>
 
-        <div class="section">
+        <!-- Expense Section -->
+        <div class="form-section">
             <h2>Expenses</h2>
-            <div class="input-group">
-                <label for="expense-description">Description</label>
-                <select id="expense-description">
-                    <option value="Food">Food</option>
-                    <option value="Transportation">Transportation</option>
-                    <option value="Electricity/Water">Electricity/Water</option>
-                    <option value="Others">Others</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="expense-amount">Amount (Rs.)</label>
-                <input type="number" id="expense-amount" placeholder="e.g., 15000">
-            </div>
-            <button id="add-expense-btn" class="red-btn">Add Expense</button>
+            <label for="expense-desc">Description</label>
+            <select id="expense-desc">
+                <option value="Food">Food</option>
+                <option value="Transport">Transport</option>
+            </select>
+            <label for="expense-amount">Amount (Rs.)</label>
+            <input type="number" id="expense-amount" placeholder="e.g., 15000">
+            <button class="add-btn expense-btn" onclick="addTransaction('expense')">Add Expense</button>
         </div>
 
-        <div class="section">
-            <h2>Transaction History</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Type</th>
-                        <th>Description</th>
-                        <th>Amount (Rs.)</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody id="transaction-history"></tbody>
-            </table>
-        </div>
+        <!-- Transaction History Table -->
+        <h2>Transaction History</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Amount (Rs.)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="transaction-table"></tbody>
+        </table>
 
+        <!-- Budget Summary -->
+        <h2>Budget Summary</h2>
         <div class="summary">
-            <h2>Budget Summary</h2>
             <p>Total Income: Rs. <span id="total-income">0</span></p>
-            <p>Total Expenses: Rs. <span id="total-expenses">0</span></p>
+            <p>Total Expenses: Rs. <span id="total-expense">0</span></p>
             <p>Balance: Rs. <span id="balance">0</span></p>
         </div>
 
-        <canvas id="expenseChart"></canvas>
+        <!-- Pie Chart -->
+        <canvas id="expense-chart"></canvas>
 
-        <div class="button-group">
-            <button id="print-btn" class="maple-btn">Print Report</button>
-            <button id="clear-btn" class="maple-btn">Clear All</button>
-        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
