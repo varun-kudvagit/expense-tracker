@@ -11,43 +11,71 @@
     <div class="container">
         <h1>Expense Tracker</h1>
 
-        <h2 class="underline">Income</h2>
-        <div class="input-group">
-            <label for="income-description">Description</label>
-            <input type="text" id="income-description" placeholder="e.g., Salary">
+        <div class="section">
+            <h2>Income</h2>
+            <div class="input-group">
+                <label for="income-description">Description</label>
+                <select id="income-description">
+                    <option value="Professional Income">Professional Income</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Business Income">Business Income</option>
+                    <option value="Agricultural Income">Agricultural Income</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="income-amount">Amount (Rs.)</label>
+                <input type="number" id="income-amount" placeholder="e.g., 50000">
+            </div>
+            <button id="add-income-btn" class="green-btn">Add Income</button>
         </div>
-        <div class="input-group">
-            <label for="income-amount">Amount (Rs.)</label>
-            <input type="number" id="income-amount" placeholder="e.g., 50000">
-        </div>
-        <button id="add-income-btn">Add Income</button>
 
-        <h2 class="underline">Expenses</h2>
-        <div class="input-group">
-            <label for="expense-description">Description</label>
-            <input type="text" id="expense-description" placeholder="e.g., Rent">
+        <div class="section">
+            <h2>Expenses</h2>
+            <div class="input-group">
+                <label for="expense-description">Description</label>
+                <select id="expense-description">
+                    <option value="Food">Food</option>
+                    <option value="Transportation">Transportation</option>
+                    <option value="Electricity/Water">Electricity/Water</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="expense-amount">Amount (Rs.)</label>
+                <input type="number" id="expense-amount" placeholder="e.g., 15000">
+            </div>
+            <button id="add-expense-btn" class="red-btn">Add Expense</button>
         </div>
-        <div class="input-group">
-            <label for="expense-amount">Amount (Rs.)</label>
-            <input type="number" id="expense-amount" placeholder="e.g., 15000">
-        </div>
-        <button id="add-expense-btn">Add Expense</button>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Type</th>
-                    <th>Description</th>
-                    <th>Amount (Rs.)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="transaction-history"></tbody>
-        </table>
+        <div class="section">
+            <h2>Transaction History</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Amount (Rs.)</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="transaction-history"></tbody>
+            </table>
+        </div>
+
+        <div class="summary">
+            <h2>Budget Summary</h2>
+            <p>Total Income: Rs. <span id="total-income">0</span></p>
+            <p>Total Expenses: Rs. <span id="total-expenses">0</span></p>
+            <p>Balance: Rs. <span id="balance">0</span></p>
+        </div>
 
         <canvas id="expenseChart"></canvas>
-        <button id="print-btn">Print Report</button>
-        <button id="clear-btn">Clear All</button>
+
+        <div class="button-group">
+            <button id="print-btn" class="maple-btn">Print Report</button>
+            <button id="clear-btn" class="maple-btn">Clear All</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
