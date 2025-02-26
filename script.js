@@ -12,13 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
         options: {
             plugins: {
                 legend: {
-                    display: true,
-                    position: 'right', // Aligning the legend
+                    position: 'bottom',
                     labels: {
-                        font: {
-                            size: 14
-                        },
-                        padding: 15
+                        fontSize: 14,
+                        boxWidth: 15
                     }
                 }
             }
@@ -31,17 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function addTransaction(type, description, amount) {
-        if (!amount || amount <= 0) {
-            alert("Please enter a valid amount.");
-            return;
-        }
-
         const transactionRow = document.createElement('tr');
         transactionRow.innerHTML = `
             <td>${type}</td>
             <td>${description}</td>
             <td>${amount.toFixed(2)}</td>
-            <td><button class="delete-btn">Delete</button></td>
+            <td><button class="red-btn delete-btn">Delete</button></td>
         `;
 
         document.getElementById('transaction-history').appendChild(transactionRow);
@@ -65,18 +57,4 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById('balance').textContent = (totalIncome - totalExpenses).toFixed(2);
         updatePieChart(totalIncome, totalExpenses);
     }
-
-    document.getElementById("add-income-btn").addEventListener("click", function () {
-        addTransaction("Income", document.getElementById('income-description').value, parseFloat(document.getElementById('income-amount').value));
-    });
-
-    document.getElementById("add-expense-btn").addEventListener("click", function () {
-        addTransaction("Expense", document.getElementById('expense-description').value, parseFloat(document.getElementById('expense-amount').value));
-    });
-
-    document.getElementById("print-btn").addEventListener("click", () => window.print());
-    document.getElementById("clear-btn").addEventListener("click", () => {
-        document.getElementById('transaction-history').innerHTML = '';
-        updateSummary();
-    });
 });
