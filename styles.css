@@ -17,29 +17,20 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 85%;
-    max-width: 900px;  
+    max-width: 900px;
     height: auto;
     overflow-y: auto;
 }
 
-h1 {
-    text-align: center;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-h2 {
+h1, h2 {
     text-align: center;
     font-size: 25px;
 }
 
-.underline {
-    text-decoration: underline;
-}
-
+/* Input Fields */
 .input-group {
     margin-bottom: 15px;
-    text-align: center; 
+    text-align: center;
 }
 
 .input-group label {
@@ -50,40 +41,24 @@ h2 {
 
 .input-group input,
 .input-group select {
-    width: 85%;  
-    max-width: 350px;  
+    width: 85%;
+    max-width: 350px;
     padding: 10px;
     font-size: 16px;
-    background-color: beige; 
     border: 1px solid black;
+    background-color: beige;
     border-radius: 5px;
     box-sizing: border-box;
     display: block;
     margin: 0 auto;
 }
 
-#add-income-btn {
-    background-color: green;
-}
-
-#add-expense-btn {
-    background-color: red;
-}
-
-.delete-btn {
-    background-color: red;
-    color: white;
-}
-
-#print-btn, #clear-btn {
-    background-color: #AC5C3E; 
-    color: white;
-}
-
+/* Buttons */
 button {
     padding: 12px 18px;
     font-size: 16px;
     font-weight: bold;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -92,9 +67,24 @@ button {
     width: 200px;
 }
 
-button:hover {
-    opacity: 0.85;
+.green-btn { background-color: green; }
+.red-btn { background-color: red; }
+.maple-btn { background-color: #b5651d; }
+
+.green-btn:hover { background-color: #218838; }
+.red-btn:hover { background-color: darkred; }
+.maple-btn:hover { background-color: #a0522d; }
+
+/* Beige buttons for mobile */
+@media screen and (max-width: 768px) {
+    .maple-btn {
+        background-color: beige;
+        color: black;
+        border: 1px solid black;
+    }
 }
+
+/* Table */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -113,23 +103,11 @@ th {
     font-weight: bold;
 }
 
-td {
-    font-size: 16px;
-}
+/* Pie Chart */
 canvas {
     display: block;
     margin: 20px auto;
     width: 50%;
     max-width: 300px;
 }
-@media screen and (max-width: 768px) {
-    .container {
-        width: 95%;
-        max-width: 100%;
-        padding: 15px;
-    }
 
-    button {
-        width: 100%; 
-    }
-}
