@@ -111,3 +111,9 @@ canvas {
     max-width: 300px;
 }
 
+/* Make Pie Chart Legend Readable */
+@media screen and (max-width: 768px) {
+    .chart-legend {
+        font-size: 14px !important;  /* Ensures legend text is visible */
+    }
+}
