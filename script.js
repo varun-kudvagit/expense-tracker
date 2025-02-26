@@ -1,36 +1,25 @@
 let transactions = [];
-let totalIncome = 0;
-let totalExpense = 0;
-let balance = 0;
-let chart;
+let expenseChart;
 
-// Function to add a transaction
+// Function to add income or expense
 function addTransaction(type) {
-    let desc = type === "income" ? document.getElementById("income-desc").value : document.getElementById("expense-desc").value;
-    let amount = type === "income" ? document.getElementById("income-amount").value : document.getElementById("expense-amount").value;
+    let description = type === 'income' ? document.getElementById('income-description').value : document.getElementById('expense-description').value;
+    let amount = type === 'income' ? document.getElementById('income-amount').value : document.getElementById('expense-amount').value;
 
     if (amount === "" || amount <= 0) {
         alert("Please enter a valid amount.");
         return;
     }
 
-    amount = parseFloat(amount);
-    transactions.push({ type, desc, amount });
-
-    updateTotals();
+    let transaction = { type, description, amount: parseFloat(amount) };
+    transactions.push(transaction);
     updateTable();
+    updateSummary();
     updateChart();
-}
 
-// Function to update totals
-function updateTotals() {
-    totalIncome = transactions.filter(t => t.type === "income").reduce((sum, t) => sum + t.amount, 0);
-    totalExpense = transactions.filter(t => t.type === "expense").reduce((sum, t) => sum + t.amount, 0);
-    balance = totalIncome - totalExpense;
-
-    document.getElementById("total-income").innerText = totalIncome;
-    document.getElementById("total-expense").innerText = totalExpense;
-    document.getElementById("balance").innerText = balance;
+    // Clear input fields
+    document.getElementById('income-amount').value = "";
+    document.getElementById('expense-amount').value = "";
 }
 
 // Function to update the table
@@ -38,41 +27,92 @@ function updateTable() {
     let tableBody = document.getElementById("transaction-table");
     tableBody.innerHTML = "";
 
-    transactions.forEach((t, index) => {
-        let row = `<tr>
-            <td>${t.type === "income" ? "Income" : "Expense"}</td>
-            <td>${t.desc}</td>
-            <td>${t.amount}</td>
+    transactions.forEach((transaction, index) => {
+        let row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${transaction.type === 'income' ? "Income" : "Expense"}</td>
+            <td>${transaction.description}</td>
+            <td>Rs. ${transaction.amount.toFixed(2)}</td>
             <td><button onclick="deleteTransaction(${index})">Delete</button></td>
-        </tr>`;
-        tableBody.innerHTML += row;
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Function to update the summary
+function updateSummary() {
+    let totalIncome = transactions.filter(t => t.type === "income").reduce((sum, t) => sum + t.amount, 0);
+    let totalExpenses = transactions.filter(t => t.type === "expense").reduce((sum, t) => sum + t.amount, 0);
+    let balance = totalIncome - totalExpenses;
+
+    document.getElementById("total-income").textContent = totalIncome.toFixed(2);
+    document.getElementById("total-expenses").textContent = totalExpenses.toFixed(2);
+    document.getElementById("balance").textContent = balance.toFixed(2);
+}
+
+// Function to update the pie chart with 3D effect
+function updateChart() {
+    let totalIncome = transactions.filter(t => t.type === "income").reduce((sum, t) => sum + t.amount, 0);
+    let totalExpenses = transactions.filter(t => t.type === "expense").reduce((sum, t) => sum + t.amount, 0);
+
+    let ctx = document.getElementById("expenseChart").getContext("2d");
+
+    if (expenseChart) {
+        expenseChart.destroy(); // Destroy previous chart to update
+    }
+
+    expenseChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ["Income", "Expenses"],
+            datasets: [{
+                data: [totalIncome, totalExpenses],
+                backgroundColor: ["#4CAF50", "#FF5733"],
+                hoverBackgroundColor: ["#388E3C", "#D84315"],
+                borderWidth: 5,
+                borderColor: "#222"
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                datalabels: {
+                    color: "#fff",
+                    font: {
+                        size: 16
+                    },
+                    formatter: (value, ctx) => {
+                        let total = ctx.chart.data.datasets[0].data.reduce((acc, val) => acc + val, 0);
+                        return ((value / total) * 100).toFixed(1) + "%"; // Show percentage
+                    }
+                }
+            },
+            animation: {
+                animateRotate: true,
+                animateScale: true
+            }
+        }
     });
 }
 
 // Function to delete a transaction
 function deleteTransaction(index) {
     transactions.splice(index, 1);
-    updateTotals();
     updateTable();
+    updateSummary();
     updateChart();
 }
 
-// Function to update the Pie Chart
-function updateChart() {
-    let ctx = document.getElementById("expense-chart").getContext("2d");
+// Function to clear all transactions
+function clearAll() {
+    transactions = [];
+    updateTable();
+    updateSummary();
+    updateChart();
+}
 
-    if (chart) {
-        chart.destroy();
-    }
-
-    chart = new Chart(ctx, {
-        type: "pie",
-        data: {
-            labels: ["Income", "Expense"],
-            datasets: [{
-                data: [totalIncome, totalExpense],
-                backgroundColor: ["green", "red"]
-            }]
-        }
-    });
+// Function to print report
+function printReport() {
+    window.print();
 }
