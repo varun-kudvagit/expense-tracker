@@ -1,41 +1,103 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const darkModeToggle = document.getElementById("darkModeToggle");
-    const expenseTable = document.getElementById("expenseTable");
+// Get references
+const incomeDescription = document.getElementById('income-description');
+const incomeAmount = document.getElementById('income-amount');
+const expenseDescription = document.getElementById('expense-description');
+const expenseAmount = document.getElementById('expense-amount');
+const expenseCategory = document.getElementById('expense-category');
+const transactionHistory = document.getElementById('transaction-history');
+const totalIncome = document.getElementById('total-income');
+const totalExpense = document.getElementById('total-expenses');
+const balance = document.getElementById('balance');
 
-    // Load Dark Mode Preference
-    if (localStorage.getItem("darkMode") === "enabled") {
-        document.body.classList.add("dark-mode");
+// Function to add income
+function addIncome() {
+    const description = incomeDescription.value.trim();
+    const amount = parseFloat(incomeAmount.value.trim());
+
+    if (description === '' || isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid income description and amount.');
+        return;
     }
 
-    // Toggle Dark Mode
-    darkModeToggle.addEventListener("click", function () {
-        document.body.classList.toggle("dark-mode");
-        localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+    addTransaction(description, amount, 'Income', '');
+    updateSummary();
+    clearIncomeInputs();
+}
+
+// Function to add expense
+function addExpense() {
+    const description = expenseDescription.value.trim();
+    const amount = parseFloat(expenseAmount.value.trim());
+    const category = expenseCategory.value;
+
+    if (description === '' || isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid expense description and amount.');
+        return;
+    }
+
+    addTransaction(description, amount, 'Expense', category);
+    updateSummary();
+    clearExpenseInputs();
+}
+
+// Function to add a transaction
+function addTransaction(description, amount, type, category) {
+    const transactionRow = document.createElement('tr');
+
+    transactionRow.innerHTML = `
+        <td>${description}</td>
+        <td>${category || '-'}</td>
+        <td>${amount.toFixed(2)}</td>
+        <td>${type}</td>
+        <td><button class="delete-btn">Delete</button></td>
+    `;
+
+    transactionHistory.appendChild(transactionRow);
+
+    // Add delete event
+    transactionRow.querySelector('.delete-btn').addEventListener('click', function () {
+        transactionRow.remove();
+        updateSummary();
+    });
+}
+
+// Function to update summary
+function updateSummary() {
+    let totalIncomeAmount = 0;
+    let totalExpenseAmount = 0;
+
+    const transactions = transactionHistory.querySelectorAll('tr');
+
+    transactions.forEach(function (transaction) {
+        const amount = parseFloat(transaction.children[2].textContent);
+        const type = transaction.children[3].textContent;
+
+        if (type === 'Income') {
+            totalIncomeAmount += amount;
+        } else {
+            totalExpenseAmount += amount;
+        }
     });
 
-    // Clear all transactions
-    document.getElementById("clearAll").addEventListener("click", function () {
-        expenseTable.innerHTML = "";
-    });
+    totalIncome.textContent = totalIncomeAmount.toFixed(2);
+    totalExpense.textContent = totalExpenseAmount.toFixed(2);
+    balance.textContent = (totalIncomeAmount - totalExpenseAmount).toFixed(2);
+}
 
-    // Print Report
-    document.getElementById("printReport").addEventListener("click", function () {
-        window.print();
-    });
+// Function to clear input fields
+function clearIncomeInputs() {
+    incomeDescription.value = '';
+    incomeAmount.value = '';
+}
 
-    // Interactive Charts
-    const ctx1 = document.getElementById("pieChart").getContext("2d");
-    const ctx2 = document.getElementById("barChart").getContext("2d");
+function clearExpenseInputs() {
+    expenseDescription.value = '';
+    expenseAmount.value = '';
+    expenseCategory.value = 'Housing';
+}
 
-    const data = {
-        labels: ["Rent", "Food", "Transport", "Entertainment", "Savings"],
-        datasets: [{
-            label: "Expense Distribution",
-            data: [500, 200, 150, 100, 50],
-            backgroundColor: ["red", "blue", "green", "purple", "orange"]
-        }]
-    };
-
-    new Chart(ctx1, { type: "pie", data });
-    new Chart(ctx2, { type: "bar", data });
-});
+// Function to clear all transactions
+function clearAll() {
+    transactionHistory.innerHTML = '';
+    updateSummary();
+}
