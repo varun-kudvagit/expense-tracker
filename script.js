@@ -1,118 +1,71 @@
-let transactions = [];
-let expenseChart;
+const expenseForm = document.getElementById('expense-form');
+const expenseInput = document.getElementById('expense-input');
+const amountInput = document.getElementById('amount-input');
+const categoryInput = document.getElementById('category-input');
+const transactionList = document.getElementById('transaction-list');
+const totalExpense = document.getElementById('total-expense');
+const totalIncome = document.getElementById('total-income');
+const balance = document.getElementById('balance');
 
-// Function to add income or expense
-function addTransaction(type) {
-    let description = type === 'income' ? document.getElementById('income-description').value : document.getElementById('expense-description').value;
-    let amount = type === 'income' ? document.getElementById('income-amount').value : document.getElementById('expense-amount').value;
+expenseForm.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    if (amount === "" || amount <= 0) {
-        alert("Please enter a valid amount.");
+    const description = expenseInput.value.trim();
+    const amount = parseFloat(amountInput.value.trim());
+    const category = categoryInput.value;
+
+    if (description === '' || isNaN(amount) || amount <= 0) {
+        alert('Please enter a valid expense description and amount.');
         return;
     }
 
-    let transaction = { type, description, amount: parseFloat(amount) };
-    transactions.push(transaction);
-    updateTable();
+    addTransaction(description, amount, category);
     updateSummary();
-    updateChart();
+    clearInputs();
+});
 
-    // Clear input fields
-    document.getElementById('income-amount').value = "";
-    document.getElementById('expense-amount').value = "";
-}
+function addTransaction(description, amount, category) {
+    const transactionRow = document.createElement('tr');
 
-// Function to update the table
-function updateTable() {
-    let tableBody = document.getElementById("transaction-table");
-    tableBody.innerHTML = "";
+    transactionRow.innerHTML = `
+        <td>${description}</td>
+        <td>${category}</td>
+        <td>${amount.toFixed(2)}</td>
+        <td><button class="delete-btn">Delete</button></td>
+    `;
 
-    transactions.forEach((transaction, index) => {
-        let row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${transaction.type === 'income' ? "Income" : "Expense"}</td>
-            <td>${transaction.description}</td>
-            <td>Rs. ${transaction.amount.toFixed(2)}</td>
-            <td><button onclick="deleteTransaction(${index})">Delete</button></td>
-        `;
-        tableBody.appendChild(row);
+    transactionList.appendChild(transactionRow);
+
+    transactionRow.querySelector('.delete-btn').addEventListener('click', function() {
+        transactionRow.remove();
+        updateSummary();
     });
 }
 
-// Function to update the summary
 function updateSummary() {
-    let totalIncome = transactions.filter(t => t.type === "income").reduce((sum, t) => sum + t.amount, 0);
-    let totalExpenses = transactions.filter(t => t.type === "expense").reduce((sum, t) => sum + t.amount, 0);
-    let balance = totalIncome - totalExpenses;
+    let totalExpenses = 0;
+    let totalIncomes = 0;
 
-    document.getElementById("total-income").textContent = totalIncome.toFixed(2);
-    document.getElementById("total-expenses").textContent = totalExpenses.toFixed(2);
-    document.getElementById("balance").textContent = balance.toFixed(2);
-}
+    const transactions = transactionList.querySelectorAll('tr');
 
-// Function to update the pie chart with 3D effect
-function updateChart() {
-    let totalIncome = transactions.filter(t => t.type === "income").reduce((sum, t) => sum + t.amount, 0);
-    let totalExpenses = transactions.filter(t => t.type === "expense").reduce((sum, t) => sum + t.amount, 0);
+    transactions.forEach(function(transaction) {
+        const amount = parseFloat(transaction.children[2].textContent);
+        const category = transaction.children[1].textContent;
 
-    let ctx = document.getElementById("expenseChart").getContext("2d");
-
-    if (expenseChart) {
-        expenseChart.destroy(); // Destroy previous chart to update
-    }
-
-    expenseChart = new Chart(ctx, {
-        type: 'pie',
-        data: {
-            labels: ["Income", "Expenses"],
-            datasets: [{
-                data: [totalIncome, totalExpenses],
-                backgroundColor: ["#4CAF50", "#FF5733"],
-                hoverBackgroundColor: ["#388E3C", "#D84315"],
-                borderWidth: 5,
-                borderColor: "#222"
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                datalabels: {
-                    color: "#fff",
-                    font: {
-                        size: 16
-                    },
-                    formatter: (value, ctx) => {
-                        let total = ctx.chart.data.datasets[0].data.reduce((acc, val) => acc + val, 0);
-                        return ((value / total) * 100).toFixed(1) + "%"; // Show percentage
-                    }
-                }
-            },
-            animation: {
-                animateRotate: true,
-                animateScale: true
-            }
+        if (category === 'Income') {
+            totalIncomes += amount;
+        } else {
+            totalExpenses += amount;
         }
     });
+
+    totalExpense.textContent = totalExpenses.toFixed(2);
+    totalIncome.textContent = totalIncomes.toFixed(2);
+    balance.textContent = (totalIncomes - totalExpenses).toFixed(2);
 }
 
-// Function to delete a transaction
-function deleteTransaction(index) {
-    transactions.splice(index, 1);
-    updateTable();
-    updateSummary();
-    updateChart();
-}
-
-// Function to clear all transactions
-function clearAll() {
-    transactions = [];
-    updateTable();
-    updateSummary();
-    updateChart();
-}
-
-// Function to print report
-function printReport() {
-    window.print();
+function clearInputs() {
+    expenseInput.value = '';
+    amountInput.value = '';
+    categoryInput.value = 'Expense';
 }
